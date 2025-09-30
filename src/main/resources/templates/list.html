@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"></html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,10 +8,15 @@
 <body>
     <h3>Information for all employees</h3>
     <br>
-    <input type="button" value="Salary" onclick="window.location.href='hr_info'">
-    only for HR staff
-    <br>
-    <input type="button" value="Performance" onclick="window.location.href='manager_info'">
-    only for managers
+    <div sec:authorize="hasRole('HR')">
+        <input type="button" value="Salary" onclick="window.location.href='hr_info'">
+        only for HR staff
+        <br>
+    </div>
+    <div sec:authorize="hasRole('MANAGER')">
+        <input type="button" value="Performance" onclick="window.location.href='manager_info'">
+        only for managers
+        <br>
+    </div>
 </body>
 </html>
